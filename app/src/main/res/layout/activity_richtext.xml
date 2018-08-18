@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".RichTextView.RichTextActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingTop="24dp"
+        >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:scaleType="center"
+            android:src="@mipmap/ic_back_black" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/iv_back"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="0字"
+            android:textColor="@color/text_count_color"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/tv_publish"
+            android:textSize="18sp"
+            android:textColor="@color/text_color"
+            android:layout_alignParentEnd="true"
+            android:text="@string/publish"
+            android:gravity="center"
+            android:layout_marginEnd="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_edit_undo"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="112dp"
+            android:scaleType="center"
+            android:src="@mipmap/edit_chapter_undo" />
+
+        <ImageView
+            android:id="@+id/iv_edit_redo"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="68dp"
+            android:scaleType="center"
+            android:src="@mipmap/edit_chapter_redo" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divide_color"
+            android:layout_alignParentBottom="true"
+
+            />
+
+    </RelativeLayout>
+
+        <com.example.asus1.simplerichtext.RichTextView.LinearScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:id="@+id/ll_scrollView"
+            >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:id="@+id/ll_richroot"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/et_title"
+                android:background="@null"
+                android:paddingLeft="16dp"
+                android:textColor="@color/text_color"
+                android:textSize="19sp"
+                android:text="@string/no_title"
+                android:hint="@string/input_title"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="center"
+                    android:src="@mipmap/ic_book"
+                    />
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:id="@+id/tv_capture"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_count_color"
+                    android:text="第一卷"
+                    android:gravity="center"
+                    />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/text_count_color"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginEnd="5dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_count_color"
+                    android:text="@string/public_ty"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divide_color"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                />
+
+    <com.example.asus1.simplerichtext.RichTextView.RichText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_capture"
+        android:background="@null"
+        android:textSize="19sp"
+        android:selectAllOnFocus="false"
+        android:lineSpacingExtra="3dp"
+        android:lineSpacingMultiplier="1.5"
+        android:minHeight="300dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="100dp"
+        android:gravity="top"
+        android:hint="@string/pleat_input"
+        android:textColor="@color/text_color"
+        android:inputType="textMultiLine"
+        />
+
+        </LinearLayout>
+
+        </com.example.asus1.simplerichtext.RichTextView.LinearScrollView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divide_color" />
+
+    <include layout="@layout/layout_richtext_bottom"/>
+
+</LinearLayout>

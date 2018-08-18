@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#26a69a</color>
+    <color name="white">#FFFFFF</color>
+    <color name="main_color">#26a69a</color>
+    <color name="balck">#212121</color>
+    <color name="divide_color">#e0e0e0</color>
+    <color name="text_color">#212121</color>
+    <color name="text_count_color">#757575</color>
+    <color name="text_hint">#bdbdbd</color>
+    <color name="green_50">#e0f2f1</color>
+</resources>

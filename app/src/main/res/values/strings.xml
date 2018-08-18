@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SimpleRichText</string>
+    <string name="pleat_input">　　请输入</string>
+    <string name="publish">发布</string>
+    <string name="no_title">无标题章节</string>
+    <string name="input_title">请输入章节名</string>
+    <string name="public_ty">公共</string>
+</resources>

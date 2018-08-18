@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:id="@+id/ll_bottom_1"
+        >
+
+
+        <ImageView
+            android:id="@+id/iv_dustbin"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:scaleType="center"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_bar_trash" />
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:scaleType="center"
+            android:src="@mipmap/ic_setting"
+            />
+
+        <ImageView
+            android:id="@+id/iv_write"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:scaleType="center"
+            android:src="@mipmap/ic_write"
+            />
+
+        <ImageView
+            android:id="@+id/iv_history"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:scaleType="center"
+            android:src="@mipmap/ic_history" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:background="@color/green_50"
+        android:visibility="gone"
+        android:id="@+id/ll_bottom_2"
+        >
+
+
+        <ImageView
+            android:id="@+id/iv_record"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:scaleType="center"
+            android:src="@mipmap/voice_small" />
+
+        <ImageView
+            android:id="@+id/iv_comma"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:scaleType="center"
+            android:src="@mipmap/comma"
+            />
+
+        <ImageView
+            android:id="@+id/iv_period"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:scaleType="center"
+            android:src="@mipmap/fullstop"
+            />
+
+        <ImageView
+            android:id="@+id/iv_colon"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:scaleType="center"
+            android:src="@mipmap/colon" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:id="@+id/iv_quotation"
+            android:src="@mipmap/quotation"
+            android:scaleType="center"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:id="@+id/iv_close_soft"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:src="@mipmap/keyboard_down2" />
+
+
+    </LinearLayout>
+
+
+</FrameLayout>
