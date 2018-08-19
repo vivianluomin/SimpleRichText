@@ -11,4 +11,15 @@
     <color name="text_count_color">#757575</color>
     <color name="text_hint">#bdbdbd</color>
     <color name="green_50">#e0f2f1</color>
+    <color name="color_select">#00695c</color>
+    <color name="pink">#f8bbd0</color>
+    <color name="pink_less">#fce4ec</color>
+    <color name="orange">#ffe0b2</color>
+    <color name="orage_less">#fff3e0</color>
+    <color name="green">#dcdec8</color>
+    <color name="green_less">#f1f8e9</color>
+    <color name="blue">#b2ebf2</color>
+    <color name="blue_less">#e0f2fa</color>
+    <color name="black_less">#455a64</color>
+    <color name="progress_bg">#bdbdbd</color>
 </resources>

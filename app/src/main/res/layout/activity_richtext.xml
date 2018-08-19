@@ -21,7 +21,7 @@
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:scaleType="center"
-            android:src="@mipmap/ic_back_black" />
+            android:src="@mipmap/ic_back" />
 
         <TextView
             android:id="@+id/tv_count"
@@ -107,7 +107,6 @@
                 android:paddingLeft="16dp"
                 android:textColor="@color/text_color"
                 android:textSize="19sp"
-                android:text="@string/no_title"
                 android:hint="@string/input_title"
                 />
 
@@ -138,7 +137,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/text_count_color"
+                    android:background="@color/divide_color"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginBottom="6dp"

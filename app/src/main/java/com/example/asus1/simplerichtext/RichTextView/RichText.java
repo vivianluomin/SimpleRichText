@@ -11,12 +11,22 @@ import android.widget.EditText;
 
 import com.example.asus1.simplerichtext.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RichText extends AppCompatEditText {
 
     private Context mContext;
     private static final String TAG = "RichText";
     private static String SUB = "\u3000\u3000";
     private textChangeListener mListener;
+    private final  int MAX_ADD = 6;
+    private final  int MAX_DE = 6;
+
+    private List<String> mAddStrings = new ArrayList<>();
+    private List<String> mDeStrings = new ArrayList<>();
+    int mAddSize = 0;
+    int mDeSize = 0;
 
     public RichText(Context context) {
         this(context,null);
@@ -36,7 +46,6 @@ public class RichText extends AppCompatEditText {
         addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                Log.d(TAG, "beforeTextChanged: "+s);
 
             }
 
@@ -46,7 +55,6 @@ public class RichText extends AppCompatEditText {
                 if(mListener!=null){
 
                     mListener.textChange( getABCCount(s.toString())+getChCount(s.toString()));
-
                 }
 
             }

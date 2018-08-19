@@ -1,12 +1,14 @@
 package com.example.asus1.simplerichtext.RichTextView;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.asus1.simplerichtext.Base.BaseActivity;
@@ -29,6 +32,7 @@ public class RichTextActivity extends BaseActivity implements
     private static String SUB = "\u3000\u3000";
     private static final String TAG = "RichTextActivity";
     private int mScreenHeight;
+    private int mScreenWidth;
     private boolean mKeyboardOpened = false;
     private  View content ;
     private EditText mEditTitle;
@@ -68,6 +72,7 @@ public class RichTextActivity extends BaseActivity implements
         DisplayMetrics metrics = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(metrics);
         mScreenHeight = metrics.heightPixels;
+        mScreenWidth = metrics.widthPixels;
         content = this.findViewById(android.R.id.content);
         content.getViewTreeObserver().addOnGlobalLayoutListener(this);
         mInputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -109,6 +114,8 @@ public class RichTextActivity extends BaseActivity implements
         mComma.setOnClickListener(this);
         mFullSport = findViewById(R.id.iv_period);
         mFullSport.setOnClickListener(this);
+        mColon = findViewById(R.id.iv_colon);
+        mColon.setOnClickListener(this);
         mQuotaition = findViewById(R.id.iv_quotation);
         mQuotaition.setOnClickListener(this);
         mSoftDwon = findViewById(R.id.iv_close_soft);
@@ -196,6 +203,7 @@ public class RichTextActivity extends BaseActivity implements
         switch (v.getId()){
             case R.id.et_capture :
             case R.id.ll_richroot:
+            case R.id.iv_write:
                 mEditType = EIDT_CAPURE;
                 mEditCapture.setFocusable(true);
                 mEditCapture.setFocusableInTouchMode(true);
@@ -211,8 +219,36 @@ public class RichTextActivity extends BaseActivity implements
                 mEditTitle.findFocus();
                 openKeyboard();
                 break;
-
-
+            case R.id.iv_back:
+                back();
+                break;
+            case R.id.iv_dustbin:
+                dusbtin();
+                break;
+            case R.id.iv_setting:
+                setting();
+                break;
+            case R.id.iv_history:
+                openHistory();
+                break;
+            case R.id.iv_record:
+                break;
+            case R.id.iv_comma:
+                addPunctuation(getResources().getString(R.string.comma));
+                break;
+            case R.id.iv_period:
+                addPunctuation(getResources().getString(R.string.fullSpot));
+                break;
+            case R.id.iv_colon:
+                addPunctuation(getResources().getString(R.string.colon));
+                break;
+            case R.id.iv_quotation:
+                addPunctuation(getResources().getString(R.string.quotation));
+                break;
+            case R.id.iv_close_soft:
+                hindKeyboard();
+                //keyboardClose();
+                break;
 
         }
     }
@@ -239,13 +275,17 @@ public class RichTextActivity extends BaseActivity implements
         }
 
     }
+
+    private void hindKeyboard(){
+
+        mInputManager.hideSoftInputFromWindow(this.getWindow().getDecorView().getWindowToken(),
+                0);
+    }
     
     private void keyboardClose(){
         Log.d(TAG, "keyboardClose: ");
-        mBottom_1.setVisibility(View.VISIBLE);
         mBottom_2.setVisibility(View.GONE);
-        mUndo.setVisibility(View.GONE);
-        mRedo.setVisibility(View.GONE);
+        mBottom_1.setVisibility(View.VISIBLE);
         mEditCapture.setFocusable(false);
         mEditTitle.setFocusable(false);
         mEditType = 0;
@@ -255,8 +295,6 @@ public class RichTextActivity extends BaseActivity implements
 
     private void openKeyboard(){
         if(!mKeyboardOpened){
-            mUndo.setVisibility(View.VISIBLE);
-            mRedo.setVisibility(View.VISIBLE);
             mInputManager.showSoftInput(mEditCapture,InputMethodManager.SHOW_FORCED);
         }
 
@@ -267,9 +305,73 @@ public class RichTextActivity extends BaseActivity implements
         public void textChange(int count) {
 
             mTextCount.setText(count+getResources().getString(R.string.count));
-            mEditCapture.setSelection(mEditCapture.getText().length());
+            //mEditCapture.setSelection(mEditCapture.getText().length());
         }
     };
+
+    private void back(){
+        String s = mTextCount.getText().toString();
+        int count = Integer.valueOf(s.split(getResources()
+                .getString(R.string.count))[0]);
+        if(count == 0){
+
+        }else {
+
+        }
+
+    }
+
+    private void dusbtin(){
+
+    }
+
+    private void setting(){
+        View view = getLayoutInflater().inflate(R.layout.layout_richtext_setting,null,false);
+
+        PopupWindow popupWindow = new PopupWindow(view);
+        popupWindow.setWidth(mScreenWidth-20);
+        popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setTouchable(true);
+        popupWindow.setAnimationStyle(R.style.setting_popu_anim);
+        popupWindow.showAtLocation(content,Gravity.BOTTOM|Gravity.CENTER,
+                0,0);
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                backgroundAlpha(1.0f);
+            }
+        });
+        backgroundAlpha(0.5f);
+
+    }
+
+    private void backgroundAlpha(float bgAlpha) {
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.alpha = bgAlpha;// 0.0-1.0
+        getWindow().setAttributes(lp);
+    }
+
+
+    private void openHistory(){
+
+    }
+
+    private void publish(){
+
+    }
+
+    private void addPunctuation(String pun){
+        mEditCapture.setText(mEditCapture.getText().toString()+pun);
+        Log.d(TAG, "addPunctuation: "+pun);
+        if(pun.equals(getResources().getString(R.string.quotation))){
+            mEditCapture.setSelection(mEditCapture.length()-1);
+        }else {
+            mEditCapture.setSelection(mEditCapture.length());
+        }
+
+    }
 
     @Override
     protected void onRestart() {

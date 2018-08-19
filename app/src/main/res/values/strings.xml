@@ -7,4 +7,8 @@
     <string name="public_ty">公共</string>
     <string name="count_0">0字</string>
     <string name="count">字</string>
+    <string name="comma">，</string>
+    <string name="fullSpot">。</string>
+    <string name="colon">"："</string>
+    <string name="quotation">\"\"</string>
 </resources>
