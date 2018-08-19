@@ -1,9 +1,12 @@
 package com.example.asus1.simplerichtext.RichTextView;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -13,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -26,7 +30,7 @@ import com.example.asus1.simplerichtext.R;
 
 public class RichTextActivity extends BaseActivity implements
         ViewTreeObserver.OnGlobalLayoutListener,
-        View.OnClickListener ,View.OnTouchListener{
+        View.OnClickListener ,View.OnTouchListener,SettingPopuWindow.callBack{
 
     private RichText mEditCapture;
     private static String SUB = "\u3000\u3000";
@@ -79,6 +83,7 @@ public class RichTextActivity extends BaseActivity implements
         init();
 
     }
+
 
     private void init(){
         mEditCapture = findViewById(R.id.et_capture);
@@ -326,17 +331,13 @@ public class RichTextActivity extends BaseActivity implements
     }
 
     private void setting(){
-        View view = getLayoutInflater().inflate(R.layout.layout_richtext_setting,null,false);
 
-        PopupWindow popupWindow = new PopupWindow(view);
-        popupWindow.setWidth(mScreenWidth-20);
-        popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        popupWindow.setFocusable(true);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setTouchable(true);
-        popupWindow.setAnimationStyle(R.style.setting_popu_anim);
+        SettingPopuWindow popupWindow = new SettingPopuWindow(this,
+                mScreenWidth-20,
+                WindowManager.LayoutParams.WRAP_CONTENT );
         popupWindow.showAtLocation(content,Gravity.BOTTOM|Gravity.CENTER,
-                0,0);
+                0,20);
+        popupWindow.setCallback(this);
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -370,6 +371,40 @@ public class RichTextActivity extends BaseActivity implements
         }else {
             mEditCapture.setSelection(mEditCapture.length());
         }
+
+    }
+
+    public void setScrennManualMode() {
+        ContentResolver contentResolver = getContentResolver();
+        try {
+            int mode = Settings.System.getInt(contentResolver,
+                    Settings.System.SCREEN_BRIGHTNESS_MODE);
+            if (mode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC) {
+                Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE,
+                        Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+            }
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void setLight(float light) {
+
+         Window window = getWindow();
+         WindowManager.LayoutParams lp = window.getAttributes();
+         lp.screenBrightness = light;
+         window.setAttributes(lp);
+
+    }
+
+    @Override
+    public void setFontSize(int font) {
+
+    }
+
+    @Override
+    public void changeBackgound(int id) {
 
     }
 

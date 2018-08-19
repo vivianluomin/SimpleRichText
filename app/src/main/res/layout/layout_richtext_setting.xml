@@ -8,7 +8,7 @@
     android:paddingRight="16dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    app:cardCornerRadius="6dp"
+    app:cardCornerRadius="10dp"
     android:layout_height="200dp">
 
     <LinearLayout
@@ -37,6 +37,8 @@
             android:layout_weight="1"
             android:maxHeight="3dp"
             android:minHeight="3dp"
+            android:max="10"
+            android:min="0"
             android:progressDrawable="@drawable/view_seekbar_light"
             android:thumb="@drawable/seekbar_thumb"
             />
