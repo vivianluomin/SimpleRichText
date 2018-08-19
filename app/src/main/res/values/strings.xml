@@ -5,4 +5,6 @@
     <string name="no_title">无标题章节</string>
     <string name="input_title">请输入章节名</string>
     <string name="public_ty">公共</string>
+    <string name="count_0">0字</string>
+    <string name="count">字</string>
 </resources>

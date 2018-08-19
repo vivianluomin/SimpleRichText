@@ -14,14 +14,18 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.asus1.simplerichtext.Base.BaseActivity;
 import com.example.asus1.simplerichtext.R;
 
-public class RichTextActivity extends BaseActivity implements ViewTreeObserver.OnGlobalLayoutListener,View.OnClickListener ,View.OnTouchListener{
+public class RichTextActivity extends BaseActivity implements
+        ViewTreeObserver.OnGlobalLayoutListener,
+        View.OnClickListener ,View.OnTouchListener{
 
-    private EditText mEditCapture;
+    private RichText mEditCapture;
     private static String SUB = "\u3000\u3000";
     private static final String TAG = "RichTextActivity";
     private int mScreenHeight;
@@ -34,6 +38,23 @@ public class RichTextActivity extends BaseActivity implements ViewTreeObserver.O
     private LinearLayout mBottom_2;
     private LinearLayout mRichRoot;
     private int mEditType = 0;
+
+    private ImageView mBack;
+    private TextView mTextCount;
+    private ImageView mUndo;
+    private ImageView mRedo;
+    private TextView mPulish;
+
+    private ImageView mDustbin;
+    private ImageView mSetting;
+    private ImageView mWrite;
+    private ImageView mHistory;
+    private ImageView mRecordInput;
+    private ImageView mComma;
+    private ImageView mFullSport;
+    private ImageView mColon;
+    private ImageView mQuotaition;
+    private ImageView mSoftDwon;
 
     private static final int EIDT_CAPURE = 1;
     private static final int EIDT_TITLE = 2;
@@ -65,8 +86,36 @@ public class RichTextActivity extends BaseActivity implements ViewTreeObserver.O
         mEditCapture.setOnTouchListener(this);
         mEditCapture.setOnClickListener(this);
         mScrollView.setOnClickListener(this);
+        mBack = findViewById(R.id.iv_back);
+        mBack.setOnClickListener(this);
+        mTextCount = findViewById(R.id.tv_count);
+        mUndo = findViewById(R.id.iv_edit_undo);
+        mUndo.setOnClickListener(this);
+        mRedo = findViewById(R.id.iv_edit_redo);
+        mRedo.setOnClickListener(this);
+        mPulish = findViewById(R.id.tv_publish);
+        mPulish.setOnClickListener(this);
+        mDustbin = findViewById(R.id.iv_dustbin);
+        mDustbin.setOnClickListener(this);
+        mSetting = findViewById(R.id.iv_setting);
+        mSetting.setOnClickListener(this);
+        mWrite = findViewById(R.id.iv_write);
+        mWrite.setOnClickListener(this);
+        mHistory = findViewById(R.id.iv_history);
+        mHistory.setOnClickListener(this);
+        mRecordInput = findViewById(R.id.iv_record);
+        mRecordInput.setOnClickListener(this);
+        mComma = findViewById(R.id.iv_comma);
+        mComma.setOnClickListener(this);
+        mFullSport = findViewById(R.id.iv_period);
+        mFullSport.setOnClickListener(this);
+        mQuotaition = findViewById(R.id.iv_quotation);
+        mQuotaition.setOnClickListener(this);
+        mSoftDwon = findViewById(R.id.iv_close_soft);
+        mSoftDwon.setOnClickListener(this);
         mBottom_1 = findViewById(R.id.ll_bottom_1);
         mBottom_2 = findViewById(R.id.ll_bottom_2);
+        mEditCapture.setTextChangeListenr(mTextChangeListener);
         mEditCapture.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -152,7 +201,7 @@ public class RichTextActivity extends BaseActivity implements ViewTreeObserver.O
                 mEditCapture.setFocusableInTouchMode(true);
                 mEditCapture.requestFocus();
                 mEditCapture.findFocus();
-                mInputManager.showSoftInput(mEditCapture,InputMethodManager.SHOW_FORCED);
+                openKeyboard();
                 break;
             case R.id.et_title:
                 mEditType = EIDT_TITLE;
@@ -160,8 +209,9 @@ public class RichTextActivity extends BaseActivity implements ViewTreeObserver.O
                 mEditTitle.setFocusableInTouchMode(true);
                 mEditTitle.requestFocus();
                 mEditTitle.findFocus();
-                mInputManager.showSoftInput(mEditCapture,InputMethodManager.SHOW_FORCED);
+                openKeyboard();
                 break;
+
 
 
         }
@@ -194,12 +244,32 @@ public class RichTextActivity extends BaseActivity implements ViewTreeObserver.O
         Log.d(TAG, "keyboardClose: ");
         mBottom_1.setVisibility(View.VISIBLE);
         mBottom_2.setVisibility(View.GONE);
+        mUndo.setVisibility(View.GONE);
+        mRedo.setVisibility(View.GONE);
         mEditCapture.setFocusable(false);
         mEditTitle.setFocusable(false);
         mEditType = 0;
         mScrollView.setFocusable(true);
         mScrollView.setFocusableInTouchMode(true);
     }
+
+    private void openKeyboard(){
+        if(!mKeyboardOpened){
+            mUndo.setVisibility(View.VISIBLE);
+            mRedo.setVisibility(View.VISIBLE);
+            mInputManager.showSoftInput(mEditCapture,InputMethodManager.SHOW_FORCED);
+        }
+
+    }
+
+    private RichText.textChangeListener mTextChangeListener = new RichText.textChangeListener() {
+        @Override
+        public void textChange(int count) {
+
+            mTextCount.setText(count+getResources().getString(R.string.count));
+            mEditCapture.setSelection(mEditCapture.getText().length());
+        }
+    };
 
     @Override
     protected void onRestart() {

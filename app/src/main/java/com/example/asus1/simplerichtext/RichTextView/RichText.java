@@ -16,6 +16,7 @@ public class RichText extends AppCompatEditText {
     private Context mContext;
     private static final String TAG = "RichText";
     private static String SUB = "\u3000\u3000";
+    private textChangeListener mListener;
 
     public RichText(Context context) {
         this(context,null);
@@ -28,7 +29,7 @@ public class RichText extends AppCompatEditText {
     public RichText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        //addTextWatch();
+        addTextWatch();
     }
 
     private void addTextWatch(){
@@ -41,7 +42,12 @@ public class RichText extends AppCompatEditText {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d(TAG, "onTextChanged: "+s);
+
+                if(mListener!=null){
+
+                    mListener.textChange( getABCCount(s.toString())+getChCount(s.toString()));
+
+                }
 
             }
 
@@ -50,6 +56,10 @@ public class RichText extends AppCompatEditText {
 
             }
         });
+    }
+
+    public void setTextChangeListenr(textChangeListener listenr){
+        mListener = listenr;
     }
 
     @Override
@@ -61,5 +71,33 @@ public class RichText extends AppCompatEditText {
             setSelection(startSelection);
         }
 
+    }
+
+    public interface textChangeListener{
+        void textChange(int count);
+    }
+
+    private int getABCCount(String s){
+        int count = 0;
+        for(int i=0;i<s.length();i++){
+            char cs =s.charAt(i);
+            if((cs>='a'&& cs<='z') || ((cs>='A'&& cs<='Z')) || ((cs>='0'&& cs<='9')) ){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private int getChCount(String s){
+
+        int count =0;
+        String Reg="^[\u4e00-\u9fa5]{1}$";  //汉字的正规表达式
+        for(int i=0;i<s.length();i++){
+            String b=Character.toString(s.charAt(i));
+            if(b.matches(Reg))
+                count++;
+        }
+
+        return count;
     }
 }
