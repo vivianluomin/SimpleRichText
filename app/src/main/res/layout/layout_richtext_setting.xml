@@ -56,7 +56,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/ll_font"
+        >
 
         <ImageView
             android:id="@+id/iv_font_less"
@@ -65,14 +67,14 @@
             android:scaleType="center"
             android:src="@mipmap/chapter_page_font_small" />
 
-        <SeekBar
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+        <com.example.asus1.simplerichtext.RichTextView.SliderFont
             android:id="@+id/seekbar_font"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:progress="50"
-            />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/iv_font_more"

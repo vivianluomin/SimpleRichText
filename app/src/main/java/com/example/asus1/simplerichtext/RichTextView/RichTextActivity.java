@@ -310,7 +310,6 @@ public class RichTextActivity extends BaseActivity implements
         public void textChange(int count) {
 
             mTextCount.setText(count+getResources().getString(R.string.count));
-            //mEditCapture.setSelection(mEditCapture.getText().length());
         }
     };
 
