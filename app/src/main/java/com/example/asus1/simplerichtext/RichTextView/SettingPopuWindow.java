@@ -24,14 +24,18 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
     private SliderFont mFontSlider;
     private LinearLayout mFontP;
     private int mScrennWidth;
+    private boolean mChangeFont = false;
     private float mLastX;
+    private int mFontIndex;
     private static final String TAG = "SettingPopuWindow";
 
-    public SettingPopuWindow(Activity context, int width, int height) {
+    public SettingPopuWindow(Activity context,
+                             int width, int height,int mIndex) {
         super(width, height);
         mContext = context;
         mScrennWidth = width;
         mLastX = mScrennWidth/2;
+        mFontIndex = mIndex;
         init();
         initView();
         setTouchInterceptor(this);
@@ -82,6 +86,9 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
     }
 
 
+    public void initThumb(){
+        mFontSlider.initCenter(mFontIndex);
+    }
 
     private float getScreenBrightness() {
 
@@ -116,10 +123,9 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
 
         if(event.getAction() == MotionEvent.ACTION_MOVE){
 
-            Log.d(TAG, "onTouch: "+y+"--------"+mFontP.getY());
-            if(y>mFontP.getY() &&y<mFontP.getY()+mFontP.getHeight()+30){
+            if(y>mFontP.getY() &&y<mFontP.getY()+mFontP.getHeight()+30 || mChangeFont){
+                mChangeFont = true;
                 float specX = x-mLastX;
-                Log.d(TAG, "onTouch: 2222   "+specX);
                 mFontSlider.move(specX);
                 mLastX = x;
                 mFontSlider.invalidate();
@@ -128,10 +134,21 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
         }else if(event.getAction() == MotionEvent.ACTION_DOWN){
 
             if(y>mFontP.getY() &&y<mFontP.getY()+mFontP.getHeight()){
+                mChangeFont = true;
                 mFontSlider.setCenter(x);
                 mLastX = x;
                 mFontSlider.invalidate();
             }
+
+        }else if(event.getAction() == MotionEvent.ACTION_UP){
+            if(mChangeFont){
+               mFontIndex =  mFontSlider.adJustCenter(x);
+               float fontSize = mFontSlider.getFontSize( mFontIndex);
+               mCallBack.setFontSize(fontSize, mFontIndex);
+                mLastX = x;
+            }
+            mChangeFont = false;
+
 
         }
         return false;
@@ -144,7 +161,7 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
     public interface callBack{
 
         void setLight(float light);
-        void setFontSize(int font);
+        void setFontSize(float font,int index);
         void changeBackgound(int id);
     }
 }

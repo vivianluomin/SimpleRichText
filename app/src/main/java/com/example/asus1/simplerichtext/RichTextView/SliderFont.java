@@ -36,6 +36,7 @@ public class SliderFont extends View {
     private int mSliderWidth;
     private int mOffsetLeft;
     private int mOffsetRight;
+    private int mIndex = 3;
     private float[] fontSize = new float[]{
       12,14,16,19,22,24,26
     };
@@ -52,7 +53,8 @@ public class SliderFont extends View {
         this(context, attrs,0);
     }
 
-    public SliderFont(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public SliderFont(Context context, @Nullable AttributeSet attrs
+            , int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         init();
@@ -120,24 +122,46 @@ public class SliderFont extends View {
         mSliderWidth = mWidth -getPaddingLeft()-getPaddingRight();
         mOffsetLeft = getPaddingLeft();
         mSpec = mSliderWidth/6;
-        mCenterX = mSliderWidth*3;
+        mCenterX = mSpec*mIndex+mOffsetLeft;
         mCenterY = (mHeight-30)/2+15;
     }
 
     public void setCenter(float center){
-        center = center/mScreemWidth*mWidth;
-        mCenterX =(int) center;
+        center =  center-(mScreemWidth-mWidth)/2;
+
+        mCenterX = (int) (center);
     }
 
+    public int adJustCenter(float local){
+        local = local -(mScreemWidth-mWidth)/2;
+        mIndex = (int) local/mSpec;
+        mCenterX = mSpec*mIndex+mOffsetLeft;
+        invalidate();
+
+        return mIndex;
+    }
+
+    public float getFontSize(int index){
+        return fontSize[index];
+    }
+
+    public int getIndex(){
+        return  mIndex;
+    }
+
+    public void initCenter(int index){
+        mIndex = index;
+        mCenterX = mSpec*mIndex+mOffsetLeft;
+        invalidate();
+    }
 
     public void move(float spec){
-        float sp = spec/mScreemWidth*mWidth;
-        mCenterX+=sp;
-        if(mCenterX<=0){
-            mCenterX = 0;
+        mCenterX+=spec;
+        if(mCenterX<=mOffsetLeft){
+            mCenterX = mOffsetLeft;
         }
-        if(mCenterX >=mWidth){
-            mCenterX = mWidth;
+        if(mCenterX >=mWidth-mOffsetLeft){
+            mCenterX = mWidth-mOffsetLeft;
         }
     }
 

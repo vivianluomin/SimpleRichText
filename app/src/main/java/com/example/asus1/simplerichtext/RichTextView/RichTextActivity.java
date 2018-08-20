@@ -66,7 +66,7 @@ public class RichTextActivity extends BaseActivity implements
 
     private static final int EIDT_CAPURE = 1;
     private static final int EIDT_TITLE = 2;
-
+    public static int mIndex = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -333,10 +333,13 @@ public class RichTextActivity extends BaseActivity implements
 
         SettingPopuWindow popupWindow = new SettingPopuWindow(this,
                 mScreenWidth-20,
-                WindowManager.LayoutParams.WRAP_CONTENT );
+                WindowManager.LayoutParams.WRAP_CONTENT ,mIndex);
+        Log.d(TAG, "setting: "+mIndex);
         popupWindow.showAtLocation(content,Gravity.BOTTOM|Gravity.CENTER,
                 0,20);
+
         popupWindow.setCallback(this);
+        popupWindow.initThumb();
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -398,8 +401,9 @@ public class RichTextActivity extends BaseActivity implements
     }
 
     @Override
-    public void setFontSize(int font) {
-
+    public void setFontSize(float font,int index) {
+        mIndex = index;
+        mEditCapture.setTextSize(font);
     }
 
     @Override
