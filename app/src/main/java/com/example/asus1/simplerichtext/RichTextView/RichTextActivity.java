@@ -23,10 +23,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.asus1.simplerichtext.Base.BaseActivity;
 import com.example.asus1.simplerichtext.R;
+import com.example.asus1.simplerichtext.Util.ConstantUtil;
 
 public class RichTextActivity extends BaseActivity implements
         ViewTreeObserver.OnGlobalLayoutListener,
@@ -63,6 +65,9 @@ public class RichTextActivity extends BaseActivity implements
     private ImageView mColon;
     private ImageView mQuotaition;
     private ImageView mSoftDwon;
+
+    private RelativeLayout mRelaTitle;
+    private boolean mDrak = false;
 
     private static final int EIDT_CAPURE = 1;
     private static final int EIDT_TITLE = 2;
@@ -128,6 +133,7 @@ public class RichTextActivity extends BaseActivity implements
         mBottom_1 = findViewById(R.id.ll_bottom_1);
         mBottom_2 = findViewById(R.id.ll_bottom_2);
         mEditCapture.setTextChangeListenr(mTextChangeListener);
+        mRelaTitle = findViewById(R.id.rela_title);
         mEditCapture.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -331,18 +337,19 @@ public class RichTextActivity extends BaseActivity implements
 
     private void setting(){
 
-        SettingPopuWindow popupWindow = new SettingPopuWindow(this,
+        final SettingPopuWindow popupWindow = new SettingPopuWindow(this,
                 mScreenWidth-20,
-                WindowManager.LayoutParams.WRAP_CONTENT ,mIndex);
+                WindowManager.LayoutParams.WRAP_CONTENT );
         Log.d(TAG, "setting: "+mIndex);
         popupWindow.showAtLocation(content,Gravity.BOTTOM|Gravity.CENTER,
                 0,20);
 
         popupWindow.setCallback(this);
-        popupWindow.initThumb();
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                ConstantUtil.mColorSelect = popupWindow.getNowPick();
+                ConstantUtil.mFontIndex = popupWindow.getFontIndex();
                 backgroundAlpha(1.0f);
             }
         });
@@ -402,13 +409,74 @@ public class RichTextActivity extends BaseActivity implements
 
     @Override
     public void setFontSize(float font,int index) {
-        mIndex = index;
+        //mIndex = index;
         mEditCapture.setTextSize(font);
     }
 
     @Override
     public void changeBackgound(int id) {
+        switch (id){
+            case R.id.iv_white:
+                setBackgroudColor(getResources().getColor(R.color.white)
+                        ,getResources().getColor(R.color.white),false);
+                break;
+            case R.id.iv_pink:
+                setBackgroudColor(getResources().getColor(R.color.pink)
+                        ,getResources().getColor(R.color.pink_less),false);
+                break;
+            case R.id.iv_yellow:
+                setBackgroudColor(getResources().getColor(R.color.orange)
+                        ,getResources().getColor(R.color.orage_less),false);
+                break;
+            case R.id.iv_green:
+                setBackgroudColor(getResources().getColor(R.color.green)
+                        ,getResources().getColor(R.color.green_less),false);
+                break;
+            case R.id.iv_bule:
+                setBackgroudColor(getResources().getColor(R.color.blue)
+                        ,getResources().getColor(R.color.blue_less),false);
+                break;
+            case R.id.iv_black:
+                setBackgroudColor(getResources().getColor(R.color.balck)
+                        ,getResources().getColor(R.color.black_less),true);
+                break;
+        }
+    }
 
+    private void setBackgroudColor(int mianColor,int titleColor,boolean black){
+        if(!black){
+            mRelaTitle.setBackgroundColor(titleColor);
+            mScrollView.setBackgroundColor(mianColor);
+            mBottom_1.setBackgroundColor(titleColor);
+            if(mDrak){
+                mBack.setImageResource(R.mipmap.ic_back);
+                mTextCount.setTextColor(getResources().getColor(R.color.text_color));
+                mPulish.setTextColor(getResources().getColor(R.color.text_color));
+                mEditCapture.setTextColor(getResources().getColor(R.color.text_color));
+                mEditTitle.setTextColor(getResources().getColor(R.color.text_color));
+               // mEditTitle.setHintTextColor(getResources().getColor(R.color.text_color));
+                mDustbin.setImageResource(R.mipmap.ic_bar_trash);
+                mSetting.setImageResource(R.mipmap.ic_setting);
+                mWrite.setImageResource(R.mipmap.ic_write);
+                mHistory.setImageResource(R.mipmap.ic_history);
+                mDrak = false;
+            }
+        }else {
+            mRelaTitle.setBackgroundColor(titleColor);
+            mScrollView.setBackgroundColor(mianColor);
+            mBottom_1.setBackgroundColor(titleColor);
+            mBack.setImageResource(R.mipmap.ic_back_dark);
+            mTextCount.setTextColor(getResources().getColor(R.color.white));
+            mPulish.setTextColor(getResources().getColor(R.color.white));
+            mEditCapture.setTextColor(getResources().getColor(R.color.white));
+            mEditTitle.setTextColor(getResources().getColor(R.color.white));
+            //mEditTitle.setHintTextColor(getResources().getColor(R.color.white));
+            mDustbin.setImageResource(R.mipmap.ic_bar_trash_dark);
+            mSetting.setImageResource(R.mipmap.ic_settings_dark);
+            mWrite.setImageResource(R.mipmap.ic_write_dark);
+            mHistory.setImageResource(R.mipmap.ic_history_dark);
+            mDrak = true;
+        }
     }
 
     @Override

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.SeekBar;
 
 import com.example.asus1.simplerichtext.R;
+import com.example.asus1.simplerichtext.Util.ConstantUtil;
 
 public class SliderFont extends View {
 
@@ -36,12 +37,11 @@ public class SliderFont extends View {
     private int mSliderWidth;
     private int mOffsetLeft;
     private int mOffsetRight;
-    private int mIndex = 3;
+    private int mIndex = ConstantUtil.mFontIndex;
     private float[] fontSize = new float[]{
       12,14,16,19,22,24,26
     };
 
-    private int mNowSize = 3;
 
     private static final String TAG = "SliderFont";
 
@@ -135,6 +135,12 @@ public class SliderFont extends View {
     public int adJustCenter(float local){
         local = local -(mScreemWidth-mWidth)/2;
         mIndex = (int) local/mSpec;
+        if(mIndex<=0){
+            mIndex = 0;
+        }
+        if(mIndex>=6){
+            mIndex = 6;
+        }
         mCenterX = mSpec*mIndex+mOffsetLeft;
         invalidate();
 
@@ -149,11 +155,6 @@ public class SliderFont extends View {
         return  mIndex;
     }
 
-    public void initCenter(int index){
-        mIndex = index;
-        mCenterX = mSpec*mIndex+mOffsetLeft;
-        invalidate();
-    }
 
     public void move(float spec){
         mCenterX+=spec;
