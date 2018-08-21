@@ -11,4 +11,8 @@
     <string name="fullSpot">。</string>
     <string name="colon">"："</string>
     <string name="quotation">\"\"</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="dustin_title">要将该章节移至回收站吗？</string>
+    <string name="dustin_meassage">回收站内的章节可以在30天内恢复，超过30天将被永久删除</string>
 </resources>

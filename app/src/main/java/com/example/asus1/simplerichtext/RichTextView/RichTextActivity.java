@@ -1,12 +1,15 @@
 package com.example.asus1.simplerichtext.RichTextView;
 
+
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -29,6 +32,7 @@ import android.widget.TextView;
 import com.example.asus1.simplerichtext.Base.BaseActivity;
 import com.example.asus1.simplerichtext.R;
 import com.example.asus1.simplerichtext.Util.ConstantUtil;
+import com.example.asus1.simplerichtext.Util.DialogUtil;
 
 public class RichTextActivity extends BaseActivity implements
         ViewTreeObserver.OnGlobalLayoutListener,
@@ -260,6 +264,9 @@ public class RichTextActivity extends BaseActivity implements
                 hindKeyboard();
                 //keyboardClose();
                 break;
+            case R.id.tv_publish:
+                publish();
+                break;
 
         }
     }
@@ -332,7 +339,20 @@ public class RichTextActivity extends BaseActivity implements
     }
 
     private void dusbtin(){
+        AlertDialog alertDialog = DialogUtil.CreateNomalDialog(this,
+                getResources().getString(R.string.dustin_title),
+                getResources().getString(R.string.dustin_meassage),
+                true, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(which == DialogInterface.BUTTON_POSITIVE){
 
+                        }else if(which == DialogInterface.BUTTON_NEGATIVE){
+
+                        }
+                    }
+                });
+        alertDialog.show();
     }
 
     private void setting(){
@@ -374,7 +394,6 @@ public class RichTextActivity extends BaseActivity implements
 
     private void addPunctuation(String pun){
         mEditCapture.setText(mEditCapture.getText().toString()+pun);
-        Log.d(TAG, "addPunctuation: "+pun);
         if(pun.equals(getResources().getString(R.string.quotation))){
             mEditCapture.setSelection(mEditCapture.length()-1);
         }else {
