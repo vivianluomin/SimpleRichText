@@ -2,9 +2,9 @@
     <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
         android:duration="1000"
         android:valueType="floatType"
-        android:valueFrom="-0"
+        android:valueFrom="0"
         android:valueTo="-180"
-        android:propertyYName="rotation"
+        android:propertyName="rotationY"
         />
 
 

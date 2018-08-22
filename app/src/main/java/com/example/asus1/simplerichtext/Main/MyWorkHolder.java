@@ -40,6 +40,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
         mClose.setOnClickListener(this);
         mSeeWork = mRoot.findViewById(R.id.tv_see_work);
         mSeeWork.setOnClickListener(this);
+        setCameraDistance();
     }
 
     @Override
@@ -73,8 +74,8 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
                }
            }
        });
+        back.start();
        front.start();
-       back.start();
 
     }
 
@@ -102,4 +103,12 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
         back.start();
 
     }
+
+    private void setCameraDistance() {
+        int distance = 16000;
+        float scale = mContext.getResources().getDisplayMetrics().density * distance;
+        mFront.setCameraDistance(scale);
+        mBack.setCameraDistance(scale);
+    }
+
 }
