@@ -15,4 +15,19 @@
     <string name="cancel">取消</string>
     <string name="dustin_title">要将该章节移至回收站吗？</string>
     <string name="dustin_meassage">回收站内的章节可以在30天内恢复，超过30天将被永久删除</string>
+    <string name="write">写作</string>
+    <string name="my_work">我的发起</string>
+    <string name="add">添加</string>
+    <string name="see_novel_published">查看作品(已发布)</string>
+    <string name="see_novel_no_publish">查看作品(未发布)</string>
+    <string name="close">关闭</string>
+    <string name="work_name">作品名称</string>
+    <string name="work_brief">作品简介</string>
+    <string name="work_type">作品类型</string>
+    <string name="publish_time">发布时间</string>
+    <string name="join_number">参与人数</string>
+    <string name="write_number">续写数量</string>
+    <string name="lookthrough_count">浏览次数</string>
+    <string name="get_good">获赞数</string>
+
 </resources>

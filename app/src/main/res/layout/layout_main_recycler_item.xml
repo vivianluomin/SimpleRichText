@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="40dp"
+    android:layout_marginLeft="50dp"
+    android:layout_marginRight="50dp"
+    android:layout_marginBottom="70dp"
+    android:background="@color/white_50"
+    >
+
+
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp"
+    android:id="@+id/card_front"
+    app:cardElevation="0dp"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:src="@mipmap/novel_bg"
+            android:scaleType="centerCrop"
+            android:id="@+id/iv_novel_cover"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_novel_name"
+            android:textSize="20sp"
+            android:textColor="@color/text_color"
+            android:gravity="center"
+            android:layout_below="@id/iv_novel_cover"
+            android:text="韶华灼灼"
+            android:layout_marginTop="10dp"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/iv_setting"
+            android:src="@mipmap/ic_setting_maincolor"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/tv_see_work"
+            android:layout_marginBottom="65dp"
+            android:background="@drawable/bg_seework"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/see_novel_published"
+            android:gravity="center"
+            android:padding="6dp"
+            />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+
+
+    <include layout="@layout/layout_main_recycler_item_back" />
+
+</FrameLayout>
