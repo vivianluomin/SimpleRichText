@@ -1,6 +1,6 @@
-package com.example.asus1.simplerichtext.Main;
+package com.example.asus1.simplerichtext.Main.Activities;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.asus1.simplerichtext.Add.AddActivity;
 import com.example.asus1.simplerichtext.Base.BaseActivity;
+import com.example.asus1.simplerichtext.Main.Adapters.MyWorkAdapter;
 import com.example.asus1.simplerichtext.R;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
@@ -45,6 +47,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.tv_add:
+                startActivity(new Intent(MainActivity.this,
+                        AddActivity.class));
+                break;
+        }
     }
 }

@@ -14,16 +14,17 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".RichTextView.RichTextActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".Base.BaseActivity" />
-        <activity android:name=".Main.MainActivity">
+        <activity android:name=".Main.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Add.AddActivity" />
+        <activity android:name=".Main.Activities.NovelCaptureActivity"></activity>
     </application>
 
 </manifest>

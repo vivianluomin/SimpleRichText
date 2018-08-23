@@ -1,4 +1,4 @@
-package com.example.asus1.simplerichtext.Main;
+package com.example.asus1.simplerichtext.Main.Holders;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.asus1.simplerichtext.Main.Activities.NovelCaptureActivity;
 import com.example.asus1.simplerichtext.R;
 
 public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -53,6 +55,7 @@ public class MyWorkHolder extends RecyclerView.ViewHolder implements View.OnClic
                 openFront();
                 break;
             case R.id.tv_see_work:
+                mContext.startActivity(new Intent(mContext, NovelCaptureActivity.class));
                 break;
         }
     }

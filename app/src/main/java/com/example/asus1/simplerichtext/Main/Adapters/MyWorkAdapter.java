@@ -1,12 +1,12 @@
-package com.example.asus1.simplerichtext.Main;
+package com.example.asus1.simplerichtext.Main.Adapters;
 
 import android.content.Context;
-import android.support.v7.widget.ActivityChooserView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.asus1.simplerichtext.Main.Holders.MyWorkHolder;
 import com.example.asus1.simplerichtext.R;
 
 public class MyWorkAdapter extends RecyclerView.Adapter<MyWorkHolder> {

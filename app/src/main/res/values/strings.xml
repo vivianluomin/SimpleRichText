@@ -29,5 +29,22 @@
     <string name="write_number">续写数量</string>
     <string name="lookthrough_count">浏览次数</string>
     <string name="get_good">获赞数</string>
+    <string name="fill_in_information">填写作品信息</string>
+    <string name="finish">完成</string>
+    <string name="book_name">作品名称：</string>
+    <string name="book_brief">作品简介</string>
+    <string name="book_type">作品类型</string>
+    <string name="book_public">指定观看人群</string>
+    <string name="book_writer">指定续写人员</string>
+    <string name="book_write_type">作品续写类型</string>
+    <string name="book_start">作品开头</string>
+    <string name="please_fill">请填写</string>
+    <string name="please_select">请选择</string>
+    <string name="max_book_name">15字以内汉字</string>
+    <string name="publish_type">发起类型</string>
+    <string name="draft_box">草稿箱</string>
+    <string name="published_capture">已发布章节</string>
+    <string name="recycle_bin">回收站</string>
+    <string name="none_data">暂无数据</string>
 
 </resources>

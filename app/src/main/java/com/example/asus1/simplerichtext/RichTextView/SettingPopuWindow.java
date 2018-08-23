@@ -175,7 +175,7 @@ public class SettingPopuWindow extends PopupWindow implements View.OnTouchListen
 
 
         }
-        return false;
+        return true;
     }
 
     @Override
