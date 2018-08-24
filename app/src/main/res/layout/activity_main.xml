@@ -54,7 +54,7 @@
         android:background="@color/divide_color"
         />
 
-    <android.support.v7.widget.RecyclerView
+    <com.example.asus1.simplerichtext.Main.Views.CardRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recycler_view"
@@ -62,6 +62,6 @@
         >
 
 
-    </android.support.v7.widget.RecyclerView>
+    </com.example.asus1.simplerichtext.Main.Views.CardRecyclerView>
 
 </LinearLayout>

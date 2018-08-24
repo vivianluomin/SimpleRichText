@@ -11,12 +11,13 @@ import android.widget.TextView;
 import com.example.asus1.simplerichtext.Add.AddActivity;
 import com.example.asus1.simplerichtext.Base.BaseActivity;
 import com.example.asus1.simplerichtext.Main.Adapters.MyWorkAdapter;
+import com.example.asus1.simplerichtext.Main.Views.CardRecyclerView;
 import com.example.asus1.simplerichtext.R;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView mBack;
-    private RecyclerView mRecyclerView;
+    private CardRecyclerView mRecyclerView;
     private TextView mAddWork;
     private MyWorkAdapter mAdapter;
 
